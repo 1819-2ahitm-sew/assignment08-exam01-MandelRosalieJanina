@@ -18,6 +18,7 @@ public class StringCompress {
         StringCompress sc = new StringCompress();
         String[] text = sc.readFromFile(FILE_NAME);
         sc.print(text);
+
     }
 
 
@@ -41,6 +42,25 @@ public class StringCompress {
      * @return String-Array mit dem entpacktem Text
      */
     public String[] readFromFile(String fileName) {
+
+        try(Scanner scanner = new Scanner(new FileReader(fileName))){
+           String zahl;
+           String buchstabe;
+            while (scanner.hasNextLine()){
+
+              zahl = scanner.next().substring(1);
+             System.out.println("Zahl:"+zahl);
+
+
+                for (int i = 0; i < zahl; i++) {
+
+                }
+
+            }
+
+        } catch (FileNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
 
 
         return null;

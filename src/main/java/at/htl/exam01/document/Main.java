@@ -1,7 +1,10 @@
 package at.htl.exam01.document;
 
-public class Main {
+import java.sql.BatchUpdateException;
+import java.util.Scanner;
 
+public class Main {
+static Scanner scanner = new Scanner(System.in);
     /**
      *
      * Führen Sie hier folgendes durch:
@@ -24,7 +27,54 @@ public class Main {
     public static void main(String[] args) {
 
 
+
+        int zaehler = 0;
+        int buecherAnzahl =0;
+        int emailAnzahl =0;
+        Document[] documents = new Document[100];
+        documents = readDokuments(documents);
+        zaehler = readLines(zaehler,documents);
+
+        for (int i = 0; i < zaehler; i++) {
+            System.out.println(documents[i]);
+
+        }
+
+        for (int i = 0; i < zaehler; i++) {
+            if (documents[i] instanceof Bücher){
+                buecherAnzahl++;
+            }else if(documents[i] instanceof Email){
+                emailAnzahl++;
+            }
+        }
+
+        System.out.println("Bücher"+buecherAnzahl);
+        System.out.println("Emails" +emailAnzahl);
+        }
+
+    private static int readLines(int zahler, Document[] dokuments) {
+        for (int i = 0; i < dokuments.length; i++) {
+            if (dokuments[i] != null)
+                zahler++;
+
+        }
+        return zahler;
     }
+
+    private static Document[] readDokuments(Document[] documents) {
+
+      documents[0]= new Bücher("Rowling","Harry Potter der Stein der Weisen");
+
+      documents[1]= new Email("Susi","Bewerbung","CoolCompany");
+
+      documents[2] = new Bücher("Tolkien","lordOfTheRings");
+
+
+        return documents;
+
+    }
+
+
 
 
 }
