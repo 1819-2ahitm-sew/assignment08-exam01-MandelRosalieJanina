@@ -23,16 +23,15 @@ public class StringCompress {
 
 
     /**
-     *
      * Sämtliche Zeilen werden aus der Textdatei eingelesen
      * zB 5A
      * Nun wird in das String-Array AAAAA geschrieben
-     *
+     * <p>
      * Bsp Testdatei
      * 5A
      * 3B
      * 4C
-     *
+     * <p>
      * ergibt eine String-Array mit 3 Elementen
      * AAAAA
      * BBB
@@ -43,18 +42,28 @@ public class StringCompress {
      */
     public String[] readFromFile(String fileName) {
 
-        try(Scanner scanner = new Scanner(new FileReader(fileName))){
-           String zahl;
-           String buchstabe;
-            while (scanner.hasNextLine()){
-
-              zahl = scanner.next().substring(1);
-             System.out.println("Zahl:"+zahl);
+        try (Scanner scanner = new Scanner(new FileReader(fileName))) {
+            String zahl;
+            char buchstabe;
 
 
-                for (int i = 0; i < zahl; i++) {
-                    System.out.println("");
+            while (scanner.hasNextLine()) {
+                String line = scanner.next();
+
+
+                zahl = line.substring(1);
+
+
+                int zahl1 = Integer.parseInt(zahl);
+
+                buchstabe = line.charAt(0);
+
+
+                for (int i = 0; i < zahl1; i++) {
+                    System.out.print(buchstabe);
+
                 }
+                System.out.println();
 
             }
 
@@ -69,7 +78,6 @@ public class StringCompress {
 
     /**
      * Der Inhalt des String-Arrays wird zeilenweise auf der Console ausgegeben
-     *
      *
      * @param lines String-Array
      */
