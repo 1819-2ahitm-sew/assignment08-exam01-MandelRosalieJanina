@@ -53,7 +53,7 @@ public class StringCompress {
 
 
                 for (int i = 0; i < zahl; i++) {
-                    System.out.println();
+                    System.out.println("");
                 }
 
             }
