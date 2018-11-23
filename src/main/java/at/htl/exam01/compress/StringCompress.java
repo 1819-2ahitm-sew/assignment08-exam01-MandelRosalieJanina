@@ -42,28 +42,31 @@ public class StringCompress {
      */
     public String[] readFromFile(String fileName) {
 
+        int zeilenAnzahl = getNoOfLines(fileName);
+        String[] liste = new String[zeilenAnzahl];
+        String zeile ="";
+        int zahl;
+        String buchstabe ="";
+
         try (Scanner scanner = new Scanner(new FileReader(fileName))) {
-            String zahl;
-            char buchstabe;
 
 
-            while (scanner.hasNextLine()) {
-                String line = scanner.next();
+            for (int i = 0; i < zeilenAnzahl ; i++) {
 
 
-                zahl = line.substring(1);
 
+                zeile = scanner.next();
 
-                int zahl1 = Integer.parseInt(zahl);
+                buchstabe = zeile.substring(0,1);
+                zahl = Integer.parseInt(zeile.substring(1));
 
-                buchstabe = line.charAt(0);
+                liste[i] = "";
 
-
-                for (int i = 0; i < zahl1; i++) {
-                    System.out.print(buchstabe);
+                for (int j = 0; j < zahl; j++) {
+                    liste[i] += buchstabe;
 
                 }
-                System.out.println();
+
 
             }
 
@@ -72,7 +75,7 @@ public class StringCompress {
         }
 
 
-        return null;
+        return liste;
     }
 
 
@@ -83,6 +86,10 @@ public class StringCompress {
      */
     public void print(String[] lines) {
 
+
+        for (int i = 0; i < lines.length ; i++) {
+            System.out.println(lines[i]);
+        }
     }
 
     /**
@@ -92,8 +99,17 @@ public class StringCompress {
      * @return Anzahl der Zeilen in der Textdatei
      */
     public int getNoOfLines(String fileName) {
+        int counter = 0;
+        try (Scanner scanner = new Scanner(new FileReader(fileName))) {
+          while (scanner.hasNextLine()){
+              counter++;
+              scanner.nextLine();
+          }
+        } catch (FileNotFoundException e) {
+            System.err.println(e.getMessage());
+        }
 
 
-        return -1;
+        return counter;
     }
 }
